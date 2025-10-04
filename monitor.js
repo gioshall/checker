@@ -5,14 +5,14 @@ import nodemailer from "nodemailer";
 const url = "https://www.chromehearts.com/scarf/cemetery-cross-silk-scarf/196366O44XXX060.html";
 
 // 讀取環境變數
-const MAIL_USER = process.env.MAIL_USER;
-const MAIL_PASS = process.env.MAIL_PASS;
-const RECEIVER = process.env.RECEIVER;
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
+const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL;
 const LINE_TOKEN = process.env.LINE_TOKEN; // 可選
 
 // --- Email 通知 ---
 async function sendEmailNotification() {
-  if (!MAIL_USER || !MAIL_PASS || !RECEIVER) {
+  if (!EMAIL_USER || !EMAIL_PASS || !NOTIFY_EMAIL) {
     console.log("⚠️ 未設定 Email 環境變數，略過寄信");
     return;
   }
@@ -20,14 +20,14 @@ async function sendEmailNotification() {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: MAIL_USER,
-      pass: MAIL_PASS,
+      user: EMAIL_USER,
+      pass: EMAIL_PASS,
     },
   });
 
   await transporter.sendMail({
-    from: `"Stock Monitor" <${MAIL_USER}>`,
-    to: RECEIVER,
+    from: `"Stock Monitor" <${EMAIL_USER}>`,
+    to: NOTIFY_EMAIL,
     subject: "🎉 Chrome Hearts 丝巾補貨啦！",
     text: `商品可能已經重新上架，快檢查：${url}`,
   });
