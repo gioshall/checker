@@ -32,6 +32,15 @@ async function sendEmailNotification() {
     text: `商品可能已經重新上架，快檢查：${url}`,
   });
 
+  async function sendEmailNotification() {
+  await transporter.sendMail({
+    from: `"網站監控通知" <${process.env.EMAIL_USER}>`,
+    to: process.env.TO_EMAIL,
+    subject: "這是一封測試郵件",
+    text: "如果你收到這封信，代表寄信功能成功 🎉"
+  });
+}
+
   console.log("📧 Email 通知已發送");
 }
 
