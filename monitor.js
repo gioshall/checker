@@ -72,7 +72,7 @@ async function checkStock() {
       // await sendLineNotification();
     } else {
       console.log("❌ 目前還是缺貨狀態");
-      await sendEmailNotification();
+      // await sendEmailNotification();
     }
   } catch (err) {
     console.error("🚨 檢查時發生錯誤：", err);
